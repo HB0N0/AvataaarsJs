@@ -1,4 +1,6 @@
-# AvataaarsJs
+<img src="https://github.com/HB0N0/AvataaarsJs/raw/main/header_img.png"></img>
+   
+   
 Use the awesome Avataaars Library by Pablo Stanley ([avataaars.com](https://avataaars.com/)) in any javascript application.   
    
 This Project uses parts of the [Dicebear Avatars Library](https://github.com/DiceBear/avatars) to generate Avatars with a specified configuration.    
