@@ -70,6 +70,12 @@ const Avataaars = {
       </g>
     `;
     }
+    else if (options.svgBackground) {
+        content = `
+      ${ (options.svgBackground)? `<path fill="${(options.svgBackground == true)? "#fff" : options.svgBackground}" d="M0 0h280v280H0z"/>` : ""}
+      ${content}
+    `;
+    }    
     options.background = undefined;
     return `
     <svg ${(options.width)? `width="${options.width}"` : ""} ${(options.height)? `height="${options.height}"` : ""}viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
