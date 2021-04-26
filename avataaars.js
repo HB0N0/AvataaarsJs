@@ -6,6 +6,9 @@ const Avataaars = {
     var svg = this._createAvataaar({...this.defaultOptions, ...options});
     return svg;
   },
+  setDefaultAvatar(options){
+    this.defaultOptions = options;
+  },
   getEditableTypes(){
     return Object.keys(this.paths).filter((p)=>{return Object.keys(this.paths[p]).length > 1});
   },
