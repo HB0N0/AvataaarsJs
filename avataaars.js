@@ -62,26 +62,28 @@ const Avataaars = {
       ${2 === topTypeZIndex ? top : ''}
     `;
     if (options.style === 'circle') {
-        content = `
-      ${ (options.svgBackground)? `<path fill="${(options.svgBackground == true)? "#fff" : options.svgBackground}" d="M0 0h280v280H0z"/>` : ""}
-      <path d="M260 160c0 66.274-53.726 120-120 120S20 226.274 20 160 73.726 40 140 40s120 53.726 120 120z" fill="${(_a = options.background) !== null && _a !== void 0 ? _a : this.colors.palette.blue01}"/>
-      <mask id="a" maskUnits="userSpaceOnUse" x="8" y="0" width="264" height="280">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M272 0H8v160h12c0 66.274 53.726 120 120 120s120-53.726 120-120h12V0z" fill="#fff"/>
-      </mask>
-      <g mask="url(#a)">
-        ${content}
-      </g>
-    `;
+      // Create random id for the mask, solves bug in rerendering and cutting of half of the image on Firefox
+      let mask_id = Math.random().toString(36).substring(7);
+      content = `
+        ${ (options.svgBackground)? `<path fill="${(options.svgBackground == true)? "#fff" : options.svgBackground}" d="M0 0h280v280H0z"/>` : ""}
+        <path d="M260 160c0 66.274-53.726 120-120 120S20 226.274 20 160 73.726 40 140 40s120 53.726 120 120z" fill="${(_a = options.background) !== null && _a !== void 0 ? _a : this.colors.palette.blue01}"/>
+        <mask id="${mask_id}" maskUnits="userSpaceOnUse" x="8" y="0" width="264" height="280">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M272 0H8v160h12c0 66.274 53.726 120 120 120s120-53.726 120-120h12V0z" fill="#fff"/>
+        </mask>
+        <g mask="url(#${mask_id})">
+          ${content}
+        </g>
+      `;
     }
     else if (options.svgBackground) {
         content = `
-      ${ (options.svgBackground)? `<path fill="${(options.svgBackground == true)? "#fff" : options.svgBackground}" d="M0 0h280v280H0z"/>` : ""}
+      <path fill="${(options.svgBackground == true)? "#fff" : options.svgBackground}" d="M0 0h280v280H0z"/>
       ${content}
     `;
     }
     options.background = undefined;
     return `
-    <svg ${(options.width)? `width="${options.width}"` : ""} ${(options.height)? `height="${options.height}"` : ""}viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg ${(options.width)? `width="${options.width}"` : ""} ${(options.height)? `height="${options.height}"` : ""} viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
       ${content}
     </svg>
   `;
