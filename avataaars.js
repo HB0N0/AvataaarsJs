@@ -6,6 +6,9 @@ const Avataaars = {
     var svg = this._createAvataaar({...this.defaultOptions, ...options});
     return svg;
   },
+  getEditableTypes(){
+    return Object.keys(this.paths).filter((p)=>{return Object.keys(this.paths[p]).length > 1});
+  },
   _getChildOrDefault (obj, type, option){
     if(typeof obj[type][option] != 'undefined'){
       return obj[type][option];
