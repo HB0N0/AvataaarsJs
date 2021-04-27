@@ -54,11 +54,25 @@ var svg = Avataaars.create({
     hairColor: "blonde"
 });
 ```
+
+### Change default Avataaar
+The default Avatar is the basic configuration, from which all custom Avataaars will inherit from. Every Option specified in the custom Avatar creation overrides the default Avatar and returns so the customized variant.  
+   
+⚠️ It is recommended to specify every customizeable parameter in this function, otherwise its possible that your Avataaar look may not persist in future releases of this library.
+```javascript
+Avataaars.setDefaultAvatar({
+    eyes: "wink",
+    clothing: "hoodie",
+    hair: "dreads",
+    hairColor: "blonde"
+});
+```
+
 ### Get avaliable options in Javascript
 This is recommended if you want to build for example an Avatar customizer.
 ```javascript
-// Read all customizable Paths/Shapes as Array
-console.log(Object.keys(Avataaars.paths));
+// Read all customizable Paths/Shapes as Array - paths with only one single option are not included
+console.log( Avataaars.getEditableTypes() );
 // >> ["skin", "top", ...]
 
 //Get Color palletes as Object
